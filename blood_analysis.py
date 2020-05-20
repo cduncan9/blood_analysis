@@ -1,5 +1,16 @@
 #blood_analysis.py
 
+def LDL_analysis(LDL_res):
+    if LDL_res < 130:
+        return "Normal"
+    elif 130<=LDL_res<160:
+        return "Borderline High"
+    elif 160<=LDL_res<190:
+        return "High"
+    else:
+        return "Very High"
+
+
 def HDL_analysis(HDL_result):
     if HDL_result >= 60:
         return "Good"
@@ -8,28 +19,35 @@ def HDL_analysis(HDL_result):
     else:
         return "Bad"
 
-def HDL_interface():
-    print("HDL Interface")
+
+def Test_interface():
+    print("Analysis Interface")
     print("Please input the result in the following format:")
-    print("  HDL=## where ## is the numeric result")
-    HDL_input = input("Result: ")
-    HDL_list = HDL_input.split("=")
-    HDL_val = HDL_list[1]
-    HDL_status = HDL_analysis(int(HDL_val))
-    print(HDL_status)
+    print("  ***=## where *** is the test and ## is the numeric result")
+    Test_input = input("Result: ")
+    Test_list = Test_input.split("=")
+    Test_type = Test_list[0]
+    Test_val = Test_list[1]
+    
+    if Test_type == 'LDL':
+        Test_status = LDL_analysis(int(Test_val))
+    else:
+        Test_status = HDL_analysis(int(Test_val))
+    
+    print("Your results for your {} test are {}".format(Test_type,Test_status))
 
 def interface():
     print("My Blood Analysis Calculator")
     keep_running = True
     while keep_running:
         print("\nOptions:")
-        print("1-HDL analysis")
+        print("1-Test analysis")
         print("9-Quit")
         choice = input("Choose an option: ")
         if choice == '9':
             keep_running = False
         elif choice == '1':
-            HDL_interface()
+            Test_interface()
         
 if __name__ == "__main__":
     interface()
