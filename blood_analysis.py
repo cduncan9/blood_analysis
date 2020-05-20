@@ -19,11 +19,19 @@ def HDL_analysis(HDL_result):
     else:
         return "Bad"
 
+def Total_analysis(total_result):
+    if total_result >= 240:
+        return "High"
+    elif 200 <= total_result < 240:
+        return "Borderline high"
+    else:
+        return "Normal"
 
 def Test_interface():
-    print("Analysis Interface")
+    print("\nAnalysis Interface")
     print("Please input the result in the following format:")
     print("  ***=## where *** is the test and ## is the numeric result")
+    print("  Or Cholesterol=### where Cholesterol is the Total Cholesterol and ### is the numeric result")
     Test_input = input("Result: ")
     Test_list = Test_input.split("=")
     Test_type = Test_list[0]
@@ -31,8 +39,10 @@ def Test_interface():
     
     if Test_type == 'LDL':
         Test_status = LDL_analysis(int(Test_val))
-    else:
+    elif Test_type == 'HDL':
         Test_status = HDL_analysis(int(Test_val))
+    elif Test_type == 'Cholesterol':
+        Test_status = Total_analysis(int(Test_val))
     
     print("Your results for your {} test are {}".format(Test_type,Test_status))
 
