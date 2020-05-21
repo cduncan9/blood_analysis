@@ -10,6 +10,13 @@ def LDL_analysis(LDL_res):
     else:
         return "Very High"
 
+def verify_entry(HDL_result):
+    if type(HDL_result[0]) != str:
+        return False
+    elif type(HDL_result[1]) != int:
+        return False
+    else:
+        return True
 
 def HDL_analysis(HDL_result):
     if HDL_result >= 60:
@@ -34,6 +41,7 @@ def Test_interface():
     print("  Or Cholesterol=### where Cholesterol is the Total Cholesterol and ### is the numeric result")
     Test_input = input("Result: ")
     Test_list = Test_input.split("=")
+    verify_entry(Test_list)
     Test_type = Test_list[0]
     Test_val = Test_list[1]
     
